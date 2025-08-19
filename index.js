@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config(); // load env variables
 
 const { router: authRouter } = require("./auth"); //import auth routes
+const cartRoutes = require("./cart"); //import cart routes
 
 const app = express();
 app.use(cors());
@@ -36,7 +37,8 @@ const connectDB = async () => {
 // -------------------
 // Mount Routes
 // -------------------
-app.use("/", authRouter);
+app.use("/", authRouter);  //mount auth routes
+app.use(cartRoutes);       //mount cart routes
 
 // -------------------
 // Product Schema

@@ -2,7 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config(); // ✅ load env variables
+require("dotenv").config(); // load env variables
+
+const { router: authRouter } = require("./auth"); //import auth routes
 
 const app = express();
 app.use(cors());
@@ -30,6 +32,11 @@ const connectDB = async () => {
     process.exit(1); // exit if DB connection fails
   }
 };
+
+// -------------------
+// Mount Routes
+// -------------------
+app.use("/", authRouter);
 
 // -------------------
 // Product Schema
